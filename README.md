@@ -42,22 +42,21 @@ As you see the rendering is asynchron. It waits for resolve of all promises
 that might get returned from `oninit` callbacks.
 
 ```javascript
-  myAsyncComponent = {
-    oninit: function (node) {
-      return new Promise(function (resolve) {
-        node.state.foo = 'bar'
-        resolve()
-      })
-    },
-    view: function (node) {
-      return m('div', node.state.foo)
-    }
+myAsyncComponent = {
+  oninit: function (node) {
+    return new Promise(function (resolve) {
+      node.state.foo = 'bar'
+      resolve()
+    })
+  },
+  view: function (node) {
+    return m('div', node.state.foo)
   }
+}
 
-  // usage
-  render(myAsyncComponent).then(function (html) {
-    // html === '<div>bar</div>'
-  }
+render(myAsyncComponent).then(function (html) {
+  // html === '<div>bar</div>'
+}
 ```
 
 
